@@ -1,0 +1,38 @@
+//BUTTONS
+@mixin btn-style($color) {
+  background-color: $color;
+  transition: all 0.25s;
+  color: #FFF;
+  &:hover {
+    background-color: lighten($color, 10%);
+  }
+}
+
+//SOCIAL BUTTONS
+.btn.socialaccount_provider.facebook {
+  @include btn-style($brand-social-facebook);
+}
+
+.btn.socialaccount_provider.twitter {
+  @include btn-style($brand-social-twitter);
+}
+
+.btn.socialaccount_provider.twitter {
+  @include btn-style($brand-social-twitter);
+}
+
+.btn.socialaccount_provider.google {
+  @include btn-style($brand-social-google);
+}
+
+.btn.socialaccount_provider.linkedin {
+  @include btn-style($brand-social-linkedin);
+}
+
+.btn.socialaccount_provider.instagram {
+  @include btn-style($brand-social-instagram);
+}
+
+.btn.socialaccount_provider.pinterest {
+  @include btn-style($brand-social-pinterest);
+}

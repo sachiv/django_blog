@@ -45,7 +45,7 @@ var paths = pathsConfig();
 
 // Styles autoprefixing and minification
 gulp.task('styles', function() {
-  return gulp.src(paths.sass + '/*.scss')
+  return gulp.src(paths.sass + '/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(plumber()) // Checks for errors
     .pipe(autoprefixer({browsers: ['last 2 versions']})) // Adds vendor prefixes
@@ -92,7 +92,7 @@ gulp.task('browserSync', function() {
 // Watch
 gulp.task('watch', function() {
 
-  gulp.watch(paths.sass + '/*.scss', ['styles']);
+  gulp.watch(paths.sass + '/**/*.scss', ['styles']);
   gulp.watch(paths.js + '/*.js', ['scripts']).on("change", reload);
   gulp.watch(paths.images + '/*', ['imgCompression']);
   gulp.watch(paths.templates + '/**/*.html').on("change", reload);

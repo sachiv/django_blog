@@ -283,3 +283,14 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+
+# Social All Auth
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += (
+    # "allauth.socialaccount.providers.facebook",
+    # "allauth.socialaccount.providers.twitter",
+    "allauth.socialaccount.providers.google",
+    # "allauth.socialaccount.providers.linkedin",
+    # "allauth.socialaccount.providers.instagram",
+    # "allauth.socialaccount.providers.pinterest",
+)
