@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 
-from .forms import PostForm
-from .models import Post
+from .forms import PostForm, CommentForm
+from .models import Post, Comment
 
 
 def post_list(request):
@@ -33,8 +33,20 @@ def post_list(request):
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
 
+    if request.method == 'POST':
+        if request.user:
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                instance = form.save(commit=False)
+                instance.user = request.user
+                instance.post = post
+                instance.save()
+                messages.add_message(request, messages.SUCCESS, 'Comment Added')
+    form = CommentForm()
+
     return render(request, 'blog/post_detail.html', {
         'post': post,
+        'form': form,
     })
 
 

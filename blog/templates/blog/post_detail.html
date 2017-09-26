@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static i18n compress %}
+{% load crispy_forms_tags staticfiles i18n %}
 
 {% block content %}
     <!-- Page Header -->
@@ -26,6 +26,16 @@
             <div class="col-xs-12 col-lg-12 mx-auto comments">
                 <br><br>
                 <h2>Comments</h2>
+                {% if request.user.is_authenticated %}
+                    <hr>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary" type="submit">Add Comment</button>
+                        </div>
+                    </form>
+                {% endif %}
                 <hr>
                 {% for comment in post.comments %}
                     <div class="post-preview">
@@ -33,7 +43,7 @@
                             <a href="#">{{ comment.user.get_full_name }}</a>
                             on {{ comment.created }}</small>
                         <br>
-                        {{ comment.content }}
+                        {{ comment.content|linebreaks }}
                     </div>
                     <br>
                 {% empty %}

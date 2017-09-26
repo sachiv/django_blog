@@ -57,7 +57,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-primary"
-                           href="{% url 'blog:post_add' %}"><i class="fa fa-plus"></i>  {% trans "Add Post" %}</a>
+                           href="{% url 'blog:post_add' %}"><i class="fa fa-plus"></i> {% trans "Add Post" %}</a>
                     </li>
                     <li class="nav-item">
                         {# URL provided by django-allauth/account/urls.py #}
@@ -83,7 +83,12 @@
 
     {% if messages %}
         {% for message in messages %}
-            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+            </div>
         {% endfor %}
     {% endif %}
 
