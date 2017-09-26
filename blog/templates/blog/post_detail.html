@@ -21,7 +21,24 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-               {{ post.content|safe }}
+                {{ post.content|safe }}
+            </div>
+            <div class="col-xs-12 col-lg-12 mx-auto comments">
+                <br><br>
+                <h2>Comments</h2>
+                <hr>
+                {% for comment in post.comments %}
+                    <div class="post-preview">
+                        <small class="post-meta">Comment by
+                            <a href="#">{{ comment.user.get_full_name }}</a>
+                            on {{ comment.created }}</small>
+                        <br>
+                        {{ comment.content }}
+                    </div>
+                    <br>
+                {% empty %}
+                    Be the first to comment!
+                {% endfor %}
             </div>
         </div>
     </div>

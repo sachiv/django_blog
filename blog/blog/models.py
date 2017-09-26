@@ -30,3 +30,15 @@ class Post(SlugMixin, StatusMixin, TimeStampedModel):
 
     def get_absolute_url(self):
         return reverse("blog:post_detail", kwargs={"slug": self.slug})
+
+    def comments(self):
+        return Comment.objects.filter(post=self, is_deleted=False).order_by('-created')
+
+
+class Comment(StatusMixin, TimeStampedModel):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, models.SET_NULL, blank=True, null=True)
+    post = models.ForeignKey(Post, models.SET_NULL, blank=True, null=True)
+    content = models.TextField(_("content"))
+
+    def __str__(self):
+        return self.content
