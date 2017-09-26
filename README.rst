@@ -11,6 +11,34 @@ Blog app
 :License: MIT
 
 
+Getting Up and Running Locally
+----------------------------------
+Perform the following steps:
+
+1. Create and run virtual environment.
+
+2. Install the requirements for your local development::
+
+        $ pip install -r requirements/local.txt
+
+3. Then, create a PostgreSQL database with the following command, where `[project_slug]` is what value you entered for your project's `project_slug`::
+
+        $ createdb [project_slug]
+
+4. You can now run the usual Django ``migrate`` and ``runserver`` commands::
+
+        $ python manage.py migrate
+        $ python manage.py runserver
+
+5. Gulp Setup: Make sure that nodejs is installed. Then in the project root run::
+
+        $ npm install
+
+6. Run gulp::
+
+        $ gulp
+
+
 Theme
 -----
 Start Bootstrap - Clean Blog Theme by: https://github.com/BlackrockDigital/startbootstrap-clean-blog
