@@ -49,6 +49,8 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'ckeditor',  # django ckeditor
+    'ckeditor_uploader',
 ]
 
 # Apps specific for this project go here.
@@ -56,6 +58,7 @@ LOCAL_APPS = [
     # custom users app
     'blog.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'blog.blog.apps.BlogConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -112,7 +115,6 @@ DATABASES = {
     'default': env.db('DATABASE_URL', default='postgres:///blog'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
-
 
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -294,3 +296,68 @@ INSTALLED_APPS += (
     # "allauth.socialaccount.providers.instagram",
     # "allauth.socialaccount.providers.pinterest",
 )
+
+# CKEditor Settings
+# ------------------------------------------------------------------------------
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        # 'skin': 'moono',
+        # 'skin': 'office2013',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_YouCustomToolbarConfig': [
+            {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+            {'name': 'forms',
+             'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
+                       'HiddenField']},
+            '/',
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
+                       'Language']},
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+            {'name': 'insert',
+             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+            '/',
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+            {'name': 'about', 'items': ['About']},
+            '/',  # put this to force next toolbar on new line
+            {'name': 'youcustomtools', 'items': [
+                # put the name of your editor.ui.addButton here
+                'Preview',
+                'Maximize',
+
+            ]},
+        ],
+        'toolbar': 'YouCustomToolbarConfig',  # put selected toolbar config here
+        'toolbarGroups': [{'name': 'document', 'groups': ['mode', 'document', 'doctools']}],
+        # 'height': 291,
+        'width': '100%',
+        # 'filebrowserWindowHeight': 725,
+        # 'filebrowserWindowWidth': 940,
+        'toolbarCanCollapse': True,
+        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'tabSpaces': 4,
+        'extraPlugins': ','.join(
+            [
+                "a11yhelp", "about", "adobeair", "ajax", "autoembed", "autogrow", "autolink", "clipboard",
+                "codesnippet", "codesnippetgeshi", "colordialog", "devtools", "dialog", "div", "divarea", "docprops",
+                "embed", "embedbase", "embedsemantic", "filetools", "find", "flash", "forms", "iframe",
+                "iframedialog", "image", "image2", "language", "lineutils", "link", "liststyle",
+                "magicline", "mathjax", "menubutton", "notification", "notificationaggregator",
+                "pagebreak", "pastefromword", "placeholder", "preview", "scayt", "sharedspace",
+                "showblocks", "smiley", "sourcedialog", "specialchar", "stylesheetparser", "table",
+                "tableresize", "tabletools", "templates", "uicolor", "uploadimage", "uploadwidget", "widget", "wsc",
+                "xml",
+            ]),
+    }
+}

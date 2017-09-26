@@ -48,8 +48,9 @@ celery==3.1.25
 
 
 
-rcssmin==1.0.6 
+rcssmin==1.0.6
 django-compressor==2.2
 
 
 # Your custom requirements go here
+django-ckeditor==5.3.0
