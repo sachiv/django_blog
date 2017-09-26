@@ -11,6 +11,11 @@ Blog app
 :License: MIT
 
 
+Theme
+-----
+Start Bootstrap - Clean Blog Theme by: https://github.com/BlackrockDigital/startbootstrap-clean-blog
+
+
 Settings
 --------
 
